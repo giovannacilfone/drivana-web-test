@@ -1,0 +1,102 @@
+{
+  "users": [
+    {
+      "id": "8d49",
+      "name": "giovannacilfone",
+      "email": "giovannacilfone2@gmail.com",
+      "password": "gio123"
+    },
+    {
+      "id": "4c07",
+      "name": "Gio",
+      "phone": "111",
+      "email": "gio",
+      "password": "1111",
+      "confirmPassword": "1111"
+    },
+    {
+      "id": "ff7f",
+      "name": "Gio",
+      "phone": "111",
+      "email": "gio@gmail.com",
+      "password": "gio",
+      "confirmPassword": "gio"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "1",
+      "vehicle": "Ford Mustang",
+      "plate": "FRD123",
+      "type": "Coupe",
+      "owner": "Juan Pérez",
+      "contact": "1122334455",
+      "pickup": "02-09-2025",
+      "return": "02-10-2025",
+      "status": "Canceled"
+    },
+    {
+      "id": "2",
+      "vehicle": "Chevrolet Tahoe",
+      "plate": "GTR345",
+      "type": "SUV",
+      "owner": "Carlos Mendoza",
+      "contact": "1133558899",
+      "pickup": "2025-03-01",
+      "return": "2025-03-19T00:00:00.000Z",
+      "status": "Confirmed"
+    },
+    {
+      "id": "3",
+      "vehicle": "Honda Civic",
+      "plate": "HND543",
+      "type": "Sedan",
+      "owner": "Laura Gómez",
+      "contact": "1166778899",
+      "pickup": "01-04-2025",
+      "return": "05-04-2025",
+      "status": "Canceled"
+    },
+    {
+      "id": "4",
+      "vehicle": "Toyota Corolla",
+      "plate": "TAC568",
+      "type": "Sedan",
+      "owner": "Felipe Pérez",
+      "contact": "1199887766",
+      "pickup": "01-05-2025",
+      "return": "10-05-2025",
+      "status": "Canceled",
+      "action": "cancel"
+    }
+  ],
+  "documents": [
+    {
+      "id": "e3f9",
+      "userId": "123",
+      "type": "dni",
+      "fileUrl": "http://localhost:5173/2901f6c6-063d-42b5-baeb-d258e7586b35",
+      "status": "approved"
+    },
+    {
+      "id": "76bd",
+      "userId": "123",
+      "type": "license",
+      "fileUrl": "http://localhost:5173/65dfafa7-0626-4b99-bd31-a0686a67a4d8",
+      "status": "rejected"
+    },
+    {
+      "id": "3389",
+      "userId": "123",
+      "type": "dni",
+      "fileUrl": "http://localhost:5173/6b84c365-cf3c-4f11-ac79-37233b69b77a",
+      "status": "pending"
+    },
+    {
+      "id": "f3e6",
+      "userId": "123",
+      "type": "address",
+      "fileUrl": "blob:http://localhost:5173/12121066-6f23-4880-b0a3-bc5b96ed66c5"
+    }
+  ]
+}
