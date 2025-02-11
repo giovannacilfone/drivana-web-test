@@ -4,7 +4,8 @@ const cors = require("cors");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-const port = 5000;
+
+const port = "https://drivana-web-test.onrender.com" || 5000;
 
 server.use(
   cors({
