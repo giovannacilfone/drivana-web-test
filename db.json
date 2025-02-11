@@ -72,13 +72,6 @@
   ],
   "documents": [
     {
-      "id": "e3f9",
-      "userId": "123",
-      "type": "dni",
-      "fileUrl": "http://localhost:5173/2901f6c6-063d-42b5-baeb-d258e7586b35",
-      "status": "approved"
-    },
-    {
       "id": "76bd",
       "userId": "123",
       "type": "license",
@@ -96,7 +89,7 @@
       "id": "f3e6",
       "userId": "123",
       "type": "address",
-      "fileUrl": "blob:http://localhost:5173/12121066-6f23-4880-b0a3-bc5b96ed66c5"
+      "fileUrl": "http://localhost:5173/12121066-6f23-4880-b0a3-bc5b96ed66c5"
     }
   ]
 }
