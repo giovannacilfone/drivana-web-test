@@ -4,19 +4,15 @@ import styled from "styled-components";
 import drivanaLogin from "../assets/drivanaLogin.jpg";
 import logo from "../assets/drivanaLogo.png";
 import { toast } from "react-toastify";
-import { Logo } from "./Login";
 import { API_URL } from "../main";
+import { TitleLogin } from "../ui/Text";
+import { ButtonLogin } from "../ui/CustomButtons";
+import { ImageContainer, Logo } from "../ui/Images";
+import { InputLogin, SignInLink } from "../ui/Inputs";
 
 const Container = styled.div`
   display: flex;
   height: 100vh;
-`;
-
-const ImageContainer = styled.img`
-  flex: 1;
-  width: 50%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const FormContainer = styled.div`
@@ -42,63 +38,13 @@ const LogoContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const LogoNav = styled.img`
-  width: auto;
-  margin-left: 20px;
-  height: 3rem;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: #000;
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  margin-bottom: 50px;
-`;
-
 const InputRow = styled.div`
   display: flex;
 `;
 
-const Input = styled.input`
-  width: 80%;
-  padding: 10px;
-  border: 2px solid #3600e0;
-  border-radius: 6px;
-  font-size: 16px;
-  margin-bottom: 15px;
-  margin-left: 40px;
-`;
-
-const SmallInput = styled(Input)`
+const SmallInput = styled(InputLogin)`
   width: 120px;
   margin-right: 16px;
-`;
-
-const Button = styled.button`
-  margin-top: 20px;
-  margin-left: 50px;
-  width: 80%;
-  padding: 12px;
-  background-color: #3600e0;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
-export const SignInLink = styled.a`
-  display: block;
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-  color: #3c09e0;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const Register: React.FC = () => {
@@ -145,13 +91,12 @@ const Register: React.FC = () => {
   return (
     <Container>
       <ImageContainer src={drivanaLogin} alt="background image" />
-
       <FormContainer>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <LogoContainer>
             <Logo src={logo} alt="Company Logo" />
           </LogoContainer>
-          <Title>Create Account</Title>
+          <TitleLogin>Create Account</TitleLogin>
           <InputRow>
             <SmallInput
               {...register("name", { required: "Name is required" })}
@@ -164,15 +109,18 @@ const Register: React.FC = () => {
           </InputRow>
           {errors.name && <p>{(errors.name as FieldError).message}</p>}
           {errors.phone && <p>{(errors.phone as FieldError).message}</p>}
-          <Input {...register("email", { required: "Email is required" })} placeholder="Email" />
+          <InputLogin
+            {...register("email", { required: "Email is required" })}
+            placeholder="Email"
+          />
           {errors.email && <p>{(errors.email as FieldError).message}</p>}
-          <Input
+          <InputLogin
             {...register("password", { required: "Password is required" })}
             placeholder="Password"
             type="password"
           />
           {errors.password && <p>{(errors.password as FieldError).message}</p>}
-          <Input
+          <InputLogin
             {...register("confirmPassword", {
               required: "Confirm password is required",
               validate: (value) => value === watch("password") || "Passwords do not match",
@@ -181,7 +129,7 @@ const Register: React.FC = () => {
             type="password"
           />
           {errors.confirmPassword && <p>{(errors.confirmPassword as FieldError).message}</p>}
-          <Button type="submit">Create Account</Button>
+          <ButtonLogin type="submit">Create Account</ButtonLogin>
           <SignInLink href="/">Already have an account? Sign in</SignInLink>
         </Form>
       </FormContainer>

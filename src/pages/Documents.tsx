@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { FaUpload, FaTrash, FaEye } from "react-icons/fa";
-import StatusBadge, { Status } from "../components/StatusBadge";
+import StatusBadge, { Status } from "../ui/StatusBadge";
 import { toast } from "react-toastify";
-import { ButtonSend, CustomFileInputButton } from "../components/CustomButtons";
+import { ButtonIcon, ButtonSend, CustomFileInputButton } from "../ui/CustomButtons";
 import { FaSpinner } from "react-icons/fa";
 import { API_URL } from "../main";
+import { FileInput } from "../ui/Inputs";
 
 type Document = {
   id: string;
@@ -48,22 +49,6 @@ const FileInputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const Button = styled.button`
-  background-color: #3600e0;
-  color: white;
-  border-radius: 20px;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  &:hover {
-    background-color: #2a00b3;
-  }
 `;
 
 const Form = styled.form`
@@ -186,17 +171,17 @@ const DocumentUpload = () => {
                   <FaUpload /> Choose file
                 </CustomFileInputButton>
                 {documents[docType as keyof typeof documents]?.fileUrl && (
-                  <Button
+                  <ButtonIcon
                     type="button"
                     onClick={() =>
                       window.open(documents[docType as keyof typeof documents].fileUrl, "_blank")
                     }
                   >
                     <FaEye style={{ fontSize: 20 }} />
-                  </Button>
+                  </ButtonIcon>
                 )}
                 {documents[docType as keyof typeof documents]?.fileUrl && (
-                  <Button
+                  <ButtonIcon
                     type="button"
                     onClick={() =>
                       setDocuments((prev) => ({
@@ -206,7 +191,7 @@ const DocumentUpload = () => {
                     }
                   >
                     <FaTrash style={{ fontSize: 20 }} />
-                  </Button>
+                  </ButtonIcon>
                 )}
               </FileInputContainer>
               <StatusBadge

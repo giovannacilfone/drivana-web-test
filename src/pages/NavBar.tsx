@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import logo from "../assets/drivanaLogo.png";
-import { LogoNav } from "./Register";
 import { FaUserCircle } from "react-icons/fa";
+import { LogoNav } from "../ui/Images";
 
 const Container = styled.div`
   display: flex;

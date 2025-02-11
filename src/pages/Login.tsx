@@ -5,18 +5,14 @@ import styled from "styled-components";
 import drivanaLogin from "../assets/drivanaLogin.jpg";
 import logo from "../assets/drivanaLogo.png";
 import { toast } from "react-toastify";
-import { SignInLink } from "./Register";
+import { ErrorMessage, TitleLogin } from "../ui/Text";
+import { ButtonLogin } from "../ui/CustomButtons";
+import { ImageContainer, Logo } from "../ui/Images";
+import { InputLogin, SignInLink } from "../ui/Inputs";
 
 const Container = styled.div`
   display: flex;
   height: 100vh;
-`;
-
-const ImageContainer = styled.img`
-  flex: 1;
-  width: 50%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const FormContainer = styled.div`
@@ -41,50 +37,6 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-`;
-
-export const Logo = styled.img`
-  width: 160px;
-  height: auto;
-  margin-bottom: 60px;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: #000;
-  font-size: 18px;
-  margin-bottom: 60px;
-  margin-left: 20px;
-  font-family: "Inter", sans-serif;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  padding: 10px;
-  border: 2px solid #3600e0;
-  border-radius: 6px;
-  font-size: 16px;
-  margin-bottom: 15px;
-  margin-left: 40px;
-`;
-
-export const Button = styled.button`
-  margin-top: 20px;
-  width: 80%;
-  padding: 12px;
-  background-color: #3600e0;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-left: 50px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 14px;
-  text-align: center;
 `;
 
 const fetchUserFromLocalStorage = (email: string, password: string) => {
@@ -124,16 +76,16 @@ const Login: React.FC = () => {
           <LogoContainer>
             <Logo src={logo} alt="Company Logo" />
           </LogoContainer>
-          <Title>Log in to your account</Title>
+          <TitleLogin>Log in to your account</TitleLogin>
 
-          <Input
+          <InputLogin
             {...register("email", { required: "Email is required" })}
             placeholder="Email"
             type="email"
           />
           {errors.email && <ErrorMessage>{(errors.email as FieldError).message}</ErrorMessage>}
 
-          <Input
+          <InputLogin
             {...register("password", { required: "Password is required" })}
             placeholder="Password"
             type="password"
@@ -142,7 +94,7 @@ const Login: React.FC = () => {
             <ErrorMessage>{(errors.password as FieldError).message}</ErrorMessage>
           )}
 
-          <Button type="submit">Sign In</Button>
+          <ButtonLogin type="submit">Sign In</ButtonLogin>
           <SignInLink href="/register">Don't have an account? Sign up</SignInLink>
         </Form>
       </FormContainer>

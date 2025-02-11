@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import { API_URL } from "../main";
 import { toast } from "react-toastify";
+import { ButtonModal, ExtendButton } from "../ui/CustomButtons";
 
 const Container = styled.div`
   display: flex;
@@ -34,54 +35,12 @@ const ModalContent = styled.div`
   text-align: center;
 `;
 
-const Button = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 10px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
 const FilterContainer = styled.div`
   margin-bottom: 10px;
   display: flex;
   gap: 20px;
   align-items: center;
   width: 100%;
-`;
-
-const ExtendButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 5px;
-  margin-top: 13px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
 `;
 
 const TableContainer = styled.div`
@@ -117,7 +76,7 @@ const Select = styled.select`
 `;
 
 const TableHead = styled.thead`
-  background-color: #6926d7;
+  background-color: #3600e0;
   color: white;
 `;
 
@@ -336,8 +295,8 @@ const Reservations: React.FC = () => {
               dateFormat="dd/MM/yyyy"
             />
             <div>
-              <Button onClick={updateReservation}>Confirm</Button>
-              <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+              <ButtonModal onClick={updateReservation}>Confirm</ButtonModal>
+              <ButtonModal onClick={() => setIsModalOpen(false)}>Cancel</ButtonModal>
             </div>
           </ModalContent>
         </ModalOverlay>
