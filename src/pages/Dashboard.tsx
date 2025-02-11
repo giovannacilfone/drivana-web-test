@@ -18,18 +18,18 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string | null>(null);
   const [showDocuments, setShowDocuments] = useState<boolean>(false);
-
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "null");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (loggedInUser) {
-      setUserName(loggedInUser.name);
-    }
-
-    if (!loggedInUser) {
+    const storedUser = localStorage.getItem("loggedInUser");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserName(parsedUser.name);
+    } else {
       navigate("/");
     }
-  }, [loggedInUser]);
+    setIsLoading(false);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
@@ -40,6 +40,7 @@ const Dashboard: React.FC = () => {
     setShowDocuments(!showDocuments);
   };
 
+  if (isLoading) return null;
   return (
     <div>
       <NavBar name={userName || ""} handleLogout={handleLogout} />

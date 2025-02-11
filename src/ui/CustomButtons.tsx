@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+interface ButtonProps {
+  bgColor?: string;
+  color?: string;
+  hoverColor?: string;
+}
+
 export const CustomFileInputButton = styled.button`
   background-color: #fff;
   color: #3600e0;
@@ -49,9 +55,9 @@ export const ButtonModal = styled.button`
   }
 `;
 
-export const ExtendButton = styled.button`
-  background-color: #007bff;
-  color: white;
+export const ExtendButton = styled.button<ButtonProps>`
+  background-color: ${(props) => props.bgColor || "#007bff"};
+  color: ${(props) => props.color || "white"};
   border: none;
   padding: 6px 10px;
   border-radius: 5px;
@@ -61,7 +67,7 @@ export const ExtendButton = styled.button`
   font-weight: bold;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${(props) => props.hoverColor || "#0056b3"};
   }
 
   &:disabled {

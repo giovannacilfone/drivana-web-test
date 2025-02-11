@@ -33,7 +33,7 @@
       "contact": "1122334455",
       "pickup": "02-09-2025",
       "return": "02-10-2025",
-      "status": "Confirmed"
+      "status": "Canceled"
     },
     {
       "id": "2",
@@ -45,6 +45,17 @@
       "pickup": "2025-03-01",
       "return": "2025-03-19T00:00:00.000Z",
       "status": "Pending"
+    },
+    {
+      "id": "3",
+      "vehicle": "Honda Civic",
+      "plate": "HND543",
+      "type": "Sedan",
+      "owner": "Laura Gómez",
+      "contact": "1166778899",
+      "pickup": "01-04-2025",
+      "return": "05-04-2025",
+      "status": "Confirmed"
     },
     {
       "id": "3",
@@ -72,24 +83,28 @@
   ],
   "documents": [
     {
-      "id": "76bd",
-      "userId": "123",
-      "type": "license",
-      "fileUrl": "http://localhost:5173/65dfafa7-0626-4b99-bd31-a0686a67a4d8",
-      "status": "rejected"
-    },
-    {
-      "id": "3389",
+      "id": "546e",
       "userId": "123",
       "type": "dni",
-      "fileUrl": "http://localhost:5173/6b84c365-cf3c-4f11-ac79-37233b69b77a",
-      "status": "pending"
+      "fileUrl": "blob:http://localhost:5173/0ac889f9-0b33-4a86-9aa4-60b99997f49e"
     },
     {
-      "id": "f3e6",
+      "id": "d12f",
+      "userId": "123",
+      "type": "license",
+      "fileUrl": "blob:http://localhost:5173/c4684d97-91fd-4f99-8d07-d623cda39cdd"
+    },
+    {
+      "id": "4bc9",
       "userId": "123",
       "type": "address",
-      "fileUrl": "http://localhost:5173/12121066-6f23-4880-b0a3-bc5b96ed66c5"
+      "fileUrl": "blob:http://localhost:5173/79c0194f-bac7-49e1-9d39-ed27e174ce06"
+    },
+    {
+      "id": "43f6",
+      "userId": "123",
+      "type": "address",
+      "fileUrl": "blob:http://localhost:5173/a9476dab-f80b-4e94-b01d-d1e9cbc01ac7"
     }
   ]
 }

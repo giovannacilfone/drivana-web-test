@@ -263,7 +263,7 @@ const Reservations: React.FC = () => {
                       </TableData>
                       {res.status === "Confirmed" ? (
                         <ExtendButton onClick={() => handleExtendClick(res)}>Extend</ExtendButton>
-                      ) : res.status !== "Canceled" ? (
+                      ) : res.status !== "Canceled" && res.status !== "Completed" ? (
                         <ExtendButton onClick={() => cancelReservation(res.id)}>
                           Cancel
                         </ExtendButton>

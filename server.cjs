@@ -59,26 +59,32 @@ server.post("/documents", (req, res) => {
     return statuses[Math.floor(Math.random() * statuses.length)];
   };
 
-  const newDocuments = documents.map((doc) => ({
-    id: Date.now() + Math.random(),
-    userId,
-    type: doc.type,
-    fileUrl: doc.fileUrl,
-    status: doc.status || getRandomStatus(),
-  }));
+  const dbDocuments = router.db.get("documents");
 
-  router.db
-    .get("documents")
-    .push(...newDocuments)
-    .write();
+  const updatedDocuments = documents.map((newDoc) => {
+    const existingIndex = dbDocuments
+      .value()
+      .findIndex((doc) => doc.userId === userId && doc.type === newDoc.type);
 
-  const filteredDocuments = newDocuments.filter((doc) =>
-    ["dni", "license", "address"].includes(doc.type)
-  );
+    const updatedDoc = {
+      id: Date.now() + Math.random(),
+      userId,
+      type: newDoc.type,
+      fileUrl: newDoc.fileUrl,
+      status: newDoc.status || getRandomStatus(),
+    };
 
-  res.status(201).json(filteredDocuments);
+    if (existingIndex !== -1) {
+      dbDocuments.splice(existingIndex, 1, updatedDoc).write();
+    } else {
+      dbDocuments.push(updatedDoc).write();
+    }
+
+    return updatedDoc;
+  });
+
+  res.status(200).json(updatedDocuments);
 });
-
 server.patch("/reservations/:id", (req, res) => {
   const id = Number(req.params.id);
   const { returnDate, status } = req.body;

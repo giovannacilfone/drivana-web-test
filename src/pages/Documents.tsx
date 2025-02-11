@@ -100,6 +100,7 @@ const DocumentUpload = () => {
       "application/pdf",
     ];
     if (!validFileTypes.includes(file.type)) {
+      toast.warning(`Invalid file type. Only images and PDFs are allowed.`);
       return Promise.reject("Invalid file type. Only images and PDFs are allowed.");
     }
 
