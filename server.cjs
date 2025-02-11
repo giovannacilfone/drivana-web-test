@@ -25,7 +25,7 @@ server.post("/users", (req, res) => {
 
   const existingUsers = router.db.get("users").filter({ email }).value();
   if (existingUsers.length > 0) {
-    return res.status(400).json({ message: "El email ya está registrado." });
+    return res.status(400).json({ message: "The email is already registered." });
   }
   const newUser = {
     id: Date.now().toString(),
@@ -35,7 +35,7 @@ server.post("/users", (req, res) => {
   };
 
   router.db.get("users").push(newUser).write();
-  console.log("Usuario creado:", newUser);
+  console.log("User created:", newUser);
 
   res.status(201).json(newUser);
 });
@@ -51,7 +51,7 @@ server.post("/documents", (req, res) => {
   if (!userId || !Array.isArray(documents) || documents.length !== 3) {
     return res
       .status(400)
-      .json({ message: "Debes enviar exactamente 3 documentos y un userId válido." });
+      .json({ message: "You must send exactly 3 documents and a valid userId." });
   }
 
   const getRandomStatus = () => {
@@ -64,7 +64,7 @@ server.post("/documents", (req, res) => {
     userId,
     type: doc.type,
     fileUrl: doc.fileUrl,
-    status: getRandomStatus(),
+    status: doc.status || getRandomStatus(),
   }));
 
   router.db
@@ -72,7 +72,11 @@ server.post("/documents", (req, res) => {
     .push(...newDocuments)
     .write();
 
-  res.status(201).json(newDocuments);
+  const filteredDocuments = newDocuments.filter((doc) =>
+    ["dni", "license", "address"].includes(doc.type)
+  );
+
+  res.status(201).json(filteredDocuments);
 });
 
 server.patch("/reservations/:id", (req, res) => {
@@ -82,7 +86,7 @@ server.patch("/reservations/:id", (req, res) => {
   const reservation = router.db.get("reservations").find({ id }).value();
 
   if (!reservation) {
-    return res.status(404).json({ message: "Reserva no encontrada" });
+    return res.status(404).json({ message: "Reservation not found" });
   }
 
   if (status === "Canceled") {
@@ -90,12 +94,12 @@ server.patch("/reservations/:id", (req, res) => {
   } else if (returnDate) {
     router.db.get("reservations").find({ id }).assign({ return: returnDate }).write();
   } else {
-    return res.status(400).json({ message: "Acción no válida" });
+    return res.status(400).json({ message: "Invalid action" });
   }
 
-  res.status(200).json({ message: "Reserva actualizada correctamente" });
+  res.status(200).json({ message: "Reservation updated successfully" });
 });
 
 server.listen(port, () => {
-  console.log(`JSON Server corriendo en http://localhost:${port}`);
+  console.log(`JSON Server running at http://localhost:${port}`);
 });

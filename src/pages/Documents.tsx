@@ -11,7 +11,7 @@ import { API_URL } from "../main";
 type Document = {
   id: string;
   userId: string;
-  type: "nationalId" | "license" | "address";
+  type: "dni" | "license" | "address";
   fileUrl: string;
   status: "pending" | "approved" | "rejected";
 };
@@ -95,7 +95,11 @@ const DocumentUpload = () => {
           return acc;
         }, {} as DocumentsState);
 
-        setDocuments(updatedDocuments);
+        setDocuments({
+          dni: updatedDocuments.dni || { fileUrl: "", status: "pending" },
+          license: updatedDocuments.license || { fileUrl: "", status: "pending" },
+          address: updatedDocuments.address || { fileUrl: "", status: "pending" },
+        });
       }
     };
 
