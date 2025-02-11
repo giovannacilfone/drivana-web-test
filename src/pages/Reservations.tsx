@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import { API_URL } from "../main";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   display: flex;
@@ -176,7 +177,6 @@ const Reservations: React.FC = () => {
   const handleExtendClick = (reservation: any) => {
     setSelectedReservation(reservation);
     setNewReturnDate(reservation.return);
-    console.log(reservation.return);
     setIsModalOpen(true);
   };
   const updateReservation = async () => {
@@ -196,7 +196,7 @@ const Reservations: React.FC = () => {
           res.id === selectedReservation.id ? { ...res, return: newReturnDate } : res
         )
       );
-
+      toast.success("Reservation updated");
       setIsModalOpen(false);
     } catch (error) {
       alert("Error extending reservation");
@@ -205,7 +205,6 @@ const Reservations: React.FC = () => {
 
   const cancelReservation = async (id: string) => {
     try {
-      console.log("ID", id);
       const response = await fetch(`${API_URL}/reservations/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -213,14 +212,15 @@ const Reservations: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Error al cancelar la reserva");
+        throw new Error("Error canceling the reservation");
       }
 
       setReservations((prevReservations) =>
         prevReservations.map((res) => (res.id === id ? { ...res, status: "Canceled" } : res))
       );
+      toast.success("Reservation canceled successfully");
     } catch (error) {
-      alert("Hubo un error al cancelar la reserva");
+      alert("There was an error canceling the reservation");
     }
   };
 

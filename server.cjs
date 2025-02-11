@@ -36,7 +36,6 @@ server.post("/users", (req, res) => {
   };
 
   router.db.get("users").push(newUser).write();
-  console.log("User created:", newUser);
 
   res.status(201).json(newUser);
 });
