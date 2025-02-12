@@ -1,29 +1,26 @@
 {
   "users": [
     {
-      "id": "8d49",
-      "name": "giovannacilfone",
-      "email": "giovannacilfone2@gmail.com",
-      "password": "gio123"
-    },
-    {
-      "id": "4c07",
-      "name": "Gio",
-      "phone": "111",
-      "email": "gio",
-      "password": "1111",
-      "confirmPassword": "1111"
-    },
-    {
-      "id": "ff7f",
-      "name": "Gio",
-      "phone": "111",
-      "email": "gio@gmail.com",
-      "password": "gio",
-      "confirmPassword": "gio"
+      "id": "9b43",
+      "name": "Juan",
+      "phone": "11",
+      "email": "juan@example.com",
+      "password": "juan",
+      "confirmPassword": "juan"
     }
   ],
   "reservations": [
+    {
+      "id": "4",
+      "vehicle": "Toyota Corolla",
+      "plate": "TAC568",
+      "type": "Sedan",
+      "owner": "Felipe Pérez",
+      "contact": "1199887766",
+      "pickup": "01-05-2025",
+      "return": "10-05-2025",
+      "status": "Completed"
+    },
     {
       "id": "1",
       "vehicle": "Ford Mustang",
@@ -43,8 +40,8 @@
       "owner": "Carlos Mendoza",
       "contact": "1133558899",
       "pickup": "2025-03-01",
-      "return": "2025-03-19T00:00:00.000Z",
-      "status": "Pending"
+      "return": "2025-03-26T00:00:00.000Z",
+      "status": "Confirmed"
     },
     {
       "id": "3",
@@ -54,8 +51,8 @@
       "owner": "Laura Gómez",
       "contact": "1166778899",
       "pickup": "01-04-2025",
-      "return": "05-04-2025",
-      "status": "Confirmed"
+      "return": "2025-05-18T03:00:00.000Z",
+      "status": "Canceled"
     },
     {
       "id": "3",
@@ -77,8 +74,7 @@
       "contact": "1199887766",
       "pickup": "01-05-2025",
       "return": "10-05-2025",
-      "status": "Completed",
-      "action": "cancel"
+      "status": "Completed"
     }
   ],
   "documents": []

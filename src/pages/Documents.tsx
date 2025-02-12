@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { FaUpload, FaTrash, FaEye } from "react-icons/fa";
+import { FaUpload, FaEye } from "react-icons/fa";
 import StatusBadge, { Status } from "../ui/StatusBadge";
 import { toast } from "react-toastify";
 import { ButtonIcon, ButtonSend, CustomFileInputButton } from "../ui/CustomButtons";
@@ -11,7 +11,6 @@ import { FileInput } from "../ui/Inputs";
 
 type Document = {
   id: string;
-  userId: string;
   type: "dni" | "license" | "address";
   fileUrl: string;
   status: "pending" | "approved" | "rejected";
@@ -79,7 +78,6 @@ const DocumentUpload = () => {
           }
           return acc;
         }, {} as DocumentsState);
-
         setDocuments({
           dni: updatedDocuments.dni || { fileUrl: "", status: "pending" },
           license: updatedDocuments.license || { fileUrl: "", status: "pending" },
@@ -117,8 +115,12 @@ const DocumentUpload = () => {
     });
   };
 
+  const getRandomStatus = () => {
+    const statuses = ["pending", "approved", "rejected"];
+    return statuses[Math.floor(Math.random() * statuses.length)];
+  };
+
   const onSubmit = async () => {
-    const userId = "123";
     setLoading(true);
     for (const docType of ["dni", "license", "address"]) {
       const fileList = watch(`${docType}.file`);
@@ -130,7 +132,7 @@ const DocumentUpload = () => {
           const response = await fetch(`${API_URL}/documents`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId, type: docType, fileUrl }),
+            body: JSON.stringify({ type: docType, fileUrl }),
           });
 
           if (response.ok) {
@@ -138,7 +140,7 @@ const DocumentUpload = () => {
             const savedDoc = await response.json();
             setDocuments((prev) => ({
               ...prev,
-              [docType]: { fileUrl: savedDoc.fileUrl, status: savedDoc.status },
+              [docType]: { fileUrl: savedDoc.fileUrl, status: getRandomStatus() },
             }));
           }
         } catch (error) {
@@ -157,7 +159,13 @@ const DocumentUpload = () => {
         <Box>
           {["dni", "license", "address"].map((docType) => (
             <Card key={docType}>
-              <h3>{docType.toUpperCase()}</h3>
+              <h3>
+                {docType === "dni"
+                  ? "National ID"
+                  : docType === "license"
+                  ? "Driver’s License"
+                  : "Proof of Address"}
+              </h3>
               <FileInputContainer>
                 <FileInput type="file" id={`${docType}-file`} {...register(`${docType}.file`)} />
                 <CustomFileInputButton
@@ -179,19 +187,6 @@ const DocumentUpload = () => {
                     }
                   >
                     <FaEye style={{ fontSize: 20 }} />
-                  </ButtonIcon>
-                )}
-                {documents[docType as keyof typeof documents]?.fileUrl && (
-                  <ButtonIcon
-                    type="button"
-                    onClick={() =>
-                      setDocuments((prev) => ({
-                        ...prev,
-                        [docType]: { fileUrl: "", status: "pending" },
-                      }))
-                    }
-                  >
-                    <FaTrash style={{ fontSize: 20 }} />
                   </ButtonIcon>
                 )}
               </FileInputContainer>

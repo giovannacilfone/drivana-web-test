@@ -34,8 +34,8 @@ export const ButtonLogin = styled.button`
   border-radius: 20px;
   cursor: pointer;
 `;
-export const ButtonModal = styled.button`
-  background-color: #007bff;
+export const ButtonModal = styled.button<ButtonProps>`
+  background-color: ${(props) => props.bgColor || "#007bff"};
   color: white;
   border: none;
   padding: 6px 10px;
@@ -43,11 +43,7 @@ export const ButtonModal = styled.button`
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
-  margin: 10px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
+  margin: 20px;
 
   &:disabled {
     background-color: #ccc;

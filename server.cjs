@@ -44,14 +44,11 @@ server.get("/reservations", (req, res) => {
   const reservations = router.db.get("reservations").value();
   res.status(200).json(reservations);
 });
-
 server.post("/documents", (req, res) => {
-  const { userId, documents } = req.body;
+  const { documents } = req.body;
 
-  if (!userId || !Array.isArray(documents) || documents.length !== 3) {
-    return res
-      .status(400)
-      .json({ message: "You must send exactly 3 documents and a valid userId." });
+  if (!Array.isArray(documents)) {
+    return res.status(400).json({ message: "Documents must be an array." });
   }
 
   const getRandomStatus = () => {
@@ -62,20 +59,17 @@ server.post("/documents", (req, res) => {
   const dbDocuments = router.db.get("documents");
 
   const updatedDocuments = documents.map((newDoc) => {
-    const existingIndex = dbDocuments
-      .value()
-      .findIndex((doc) => doc.userId === userId && doc.type === newDoc.type);
+    const existingDoc = dbDocuments.find({ type: newDoc.type }).value();
 
     const updatedDoc = {
-      id: Date.now() + Math.random(),
-      userId,
+      id: existingDoc ? existingDoc.id : Date.now() + Math.random(),
       type: newDoc.type,
       fileUrl: newDoc.fileUrl,
-      status: newDoc.status || getRandomStatus(),
+      status: getRandomStatus(),
     };
 
-    if (existingIndex !== -1) {
-      dbDocuments.splice(existingIndex, 1, updatedDoc).write();
+    if (existingDoc) {
+      dbDocuments.find({ type: newDoc.type }).assign(updatedDoc).write();
     } else {
       dbDocuments.push(updatedDoc).write();
     }

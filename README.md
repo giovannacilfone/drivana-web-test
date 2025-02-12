@@ -22,7 +22,7 @@ _npm install_ or yarn install
 
 ## Running the server
 
-npx json-server --watch server/db.json --port 5000
+npx json-server --watch db.json --port 5000
 
 ## Running the frontend
 

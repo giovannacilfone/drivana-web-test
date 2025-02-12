@@ -261,15 +261,17 @@ const Reservations: React.FC = () => {
                       <TableData>
                         <Chip status={res.status}>{res.status}</Chip>
                       </TableData>
-                      {res.status === "Confirmed" ? (
-                        <ExtendButton onClick={() => handleExtendClick(res)}>Extend</ExtendButton>
-                      ) : res.status !== "Canceled" && res.status !== "Completed" ? (
-                        <ExtendButton onClick={() => cancelReservation(res.id)}>
-                          Cancel
-                        </ExtendButton>
-                      ) : (
-                        "-"
-                      )}
+                      <TableData>
+                        {res.status === "Confirmed" ? (
+                          <ExtendButton onClick={() => handleExtendClick(res)}>Extend</ExtendButton>
+                        ) : res.status !== "Canceled" && res.status !== "Completed" ? (
+                          <ExtendButton bgColor="#DA2E2E" onClick={() => cancelReservation(res.id)}>
+                            Cancel
+                          </ExtendButton>
+                        ) : (
+                          "-"
+                        )}
+                      </TableData>
                     </TableRow>
                   ))
                 ) : (
@@ -290,13 +292,17 @@ const Reservations: React.FC = () => {
             <h3>Extend Reservation</h3>
             <DatePicker
               selected={newReturnDate}
-              onChange={(date) => setNewReturnDate(date)}
-              minDate={selectedReservation ? new Date(selectedReservation.return) : new Date()}
+              onChange={(date: Date | null) => setNewReturnDate(date)}
+              minDate={new Date()}
               dateFormat="dd/MM/yyyy"
             />
             <div>
-              <ButtonModal onClick={updateReservation}>Confirm</ButtonModal>
-              <ButtonModal onClick={() => setIsModalOpen(false)}>Cancel</ButtonModal>
+              <ButtonModal bgColor="#54D20B" onClick={updateReservation}>
+                Confirm
+              </ButtonModal>
+              <ButtonModal bgColor="#DA2E2E" onClick={() => setIsModalOpen(false)}>
+                Cancel
+              </ButtonModal>
             </div>
           </ModalContent>
         </ModalOverlay>
