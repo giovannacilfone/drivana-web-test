@@ -40,10 +40,18 @@ const LogoContainer = styled.div`
 
 const InputRow = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SmallInput = styled(InputLogin)`
   width: 120px;
+`;
+
+export const Divider = styled.div`
+  border-top: 1px solid #ccc;
+  opacity: 0.6;
+  margin-bottom: 30px;
 `;
 
 export const ErrorMessage = styled.p`
@@ -111,7 +119,7 @@ const Register: React.FC = () => {
             <Logo src={logo} alt="Company Logo" />
           </LogoContainer>
           <TitleLogin>Create Account</TitleLogin>
-
+          <Divider />
           <InputRow>
             <InputGroup>
               <SmallInput

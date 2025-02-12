@@ -9,7 +9,7 @@ import { TitleLogin } from "../ui/Text";
 import { ButtonLogin } from "../ui/CustomButtons";
 import { ImageContainer, Logo } from "../ui/Images";
 import { InputLogin, SignInLink } from "../ui/Inputs";
-import { ErrorMessage, InputGroup } from "./Register";
+import { Divider, ErrorMessage, InputGroup } from "./Register";
 
 const Container = styled.div`
   display: flex;
@@ -27,10 +27,7 @@ const FormContainer = styled.div`
 const Form = styled.form`
   width: 80%;
   max-width: 400px;
-  background-color: white;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const LogoContainer = styled.div`
@@ -78,6 +75,7 @@ const Login: React.FC = () => {
             <Logo src={logo} alt="Company Logo" />
           </LogoContainer>
           <TitleLogin>Log in to your account</TitleLogin>
+          <Divider />
 
           <InputGroup>
             <InputLogin

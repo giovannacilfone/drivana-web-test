@@ -7,11 +7,11 @@ export const TitleWelcome = styled.h1`
   font-family: "Poppins", sans-serif;
 `;
 
-export const TitleLogin = styled.h1`
+export const TitleLogin = styled.p`
   text-align: center;
   color: #000;
   font-size: 18px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   margin-left: 20px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 `;
