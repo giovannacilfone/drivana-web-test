@@ -5,10 +5,11 @@ import styled from "styled-components";
 import drivanaLogin from "../assets/drivanaLogin.jpg";
 import logo from "../assets/drivanaLogo.png";
 import { toast } from "react-toastify";
-import { ErrorMessage, TitleLogin } from "../ui/Text";
+import { TitleLogin } from "../ui/Text";
 import { ButtonLogin } from "../ui/CustomButtons";
 import { ImageContainer, Logo } from "../ui/Images";
 import { InputLogin, SignInLink } from "../ui/Inputs";
+import { ErrorMessage, InputGroup } from "./Register";
 
 const Container = styled.div`
   display: flex;
@@ -78,21 +79,24 @@ const Login: React.FC = () => {
           </LogoContainer>
           <TitleLogin>Log in to your account</TitleLogin>
 
-          <InputLogin
-            {...register("email", { required: "Email is required" })}
-            placeholder="Email"
-            type="email"
-          />
-          {errors.email && <ErrorMessage>{(errors.email as FieldError).message}</ErrorMessage>}
-
-          <InputLogin
-            {...register("password", { required: "Password is required" })}
-            placeholder="Password"
-            type="password"
-          />
-          {errors.password && (
-            <ErrorMessage>{(errors.password as FieldError).message}</ErrorMessage>
-          )}
+          <InputGroup>
+            <InputLogin
+              {...register("email", { required: "Email is required" })}
+              placeholder="Email"
+              type="email"
+            />
+            {errors.email && <ErrorMessage>{(errors.email as FieldError).message}</ErrorMessage>}
+          </InputGroup>
+          <InputGroup>
+            <InputLogin
+              {...register("password", { required: "Password is required" })}
+              placeholder="Password"
+              type="password"
+            />
+            {errors.password && (
+              <ErrorMessage>{(errors.password as FieldError).message}</ErrorMessage>
+            )}
+          </InputGroup>
 
           <ButtonLogin type="submit">Sign In</ButtonLogin>
           <SignInLink href="/register">Don't have an account? Sign up</SignInLink>

@@ -44,7 +44,21 @@ const InputRow = styled.div`
 
 const SmallInput = styled(InputLogin)`
   width: 120px;
-  margin-right: 16px;
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-top: 0;
+`;
+
+export const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  margin-left: 40px;
 `;
 
 const Register: React.FC = () => {
@@ -97,38 +111,63 @@ const Register: React.FC = () => {
             <Logo src={logo} alt="Company Logo" />
           </LogoContainer>
           <TitleLogin>Create Account</TitleLogin>
+
           <InputRow>
-            <SmallInput
-              {...register("name", { required: "Name is required" })}
-              placeholder="Name"
-            />
-            <SmallInput
-              {...register("phone", { required: "Phone number is required" })}
-              placeholder="Phone"
-            />
+            <InputGroup>
+              <SmallInput
+                {...register("name", { required: "Name is required" })}
+                placeholder="Name"
+              />
+              {errors.name && <ErrorMessage>{(errors.name as FieldError).message}</ErrorMessage>}
+            </InputGroup>
+            <InputGroup>
+              <SmallInput
+                {...register("phone", { required: "Phone number is required" })}
+                placeholder="Phone"
+              />
+              {errors.phone && <ErrorMessage>{(errors.phone as FieldError).message}</ErrorMessage>}
+            </InputGroup>
           </InputRow>
-          {errors.name && <p>{(errors.name as FieldError).message}</p>}
-          {errors.phone && <p>{(errors.phone as FieldError).message}</p>}
-          <InputLogin
-            {...register("email", { required: "Email is required" })}
-            placeholder="Email"
-          />
-          {errors.email && <p>{(errors.email as FieldError).message}</p>}
-          <InputLogin
-            {...register("password", { required: "Password is required" })}
-            placeholder="Password"
-            type="password"
-          />
-          {errors.password && <p>{(errors.password as FieldError).message}</p>}
-          <InputLogin
-            {...register("confirmPassword", {
-              required: "Confirm password is required",
-              validate: (value) => value === watch("password") || "Passwords do not match",
-            })}
-            placeholder="Confirm Password"
-            type="password"
-          />
-          {errors.confirmPassword && <p>{(errors.confirmPassword as FieldError).message}</p>}
+
+          <InputGroup>
+            <InputLogin
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Enter a valid email address",
+                },
+              })}
+              placeholder="Email"
+            />
+            {errors.email && <ErrorMessage>{(errors.email as FieldError).message}</ErrorMessage>}
+          </InputGroup>
+
+          <InputGroup>
+            <InputLogin
+              {...register("password", { required: "Password is required" })}
+              placeholder="Password"
+              type="password"
+            />
+            {errors.password && (
+              <ErrorMessage>{(errors.password as FieldError).message}</ErrorMessage>
+            )}
+          </InputGroup>
+
+          <InputGroup>
+            <InputLogin
+              {...register("confirmPassword", {
+                required: "Confirm password is required",
+                validate: (value) => value === watch("password") || "Passwords do not match",
+              })}
+              placeholder="Confirm Password"
+              type="password"
+            />
+            {errors.confirmPassword && (
+              <ErrorMessage>{(errors.confirmPassword as FieldError).message}</ErrorMessage>
+            )}
+          </InputGroup>
+
           <ButtonLogin type="submit">Create Account</ButtonLogin>
           <SignInLink href="/">Already have an account? Sign in</SignInLink>
         </Form>

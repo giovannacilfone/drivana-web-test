@@ -89,7 +89,7 @@ const TableHeader = styled.th`
 const TableRow = styled.tr<{ status: string }>`
   &:nth-child(even) {
     background-color: #f5f0ff;
-    color: ${(props) => (props.status === "Pending" ? "#cc5200" : "#4005A0")};
+    color: #4005a0;
   }
 `;
 

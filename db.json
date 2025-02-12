@@ -81,30 +81,5 @@
       "action": "cancel"
     }
   ],
-  "documents": [
-    {
-      "id": "546e",
-      "userId": "123",
-      "type": "dni",
-      "fileUrl": "blob:http://localhost:5173/0ac889f9-0b33-4a86-9aa4-60b99997f49e"
-    },
-    {
-      "id": "d12f",
-      "userId": "123",
-      "type": "license",
-      "fileUrl": "blob:http://localhost:5173/c4684d97-91fd-4f99-8d07-d623cda39cdd"
-    },
-    {
-      "id": "4bc9",
-      "userId": "123",
-      "type": "address",
-      "fileUrl": "blob:http://localhost:5173/79c0194f-bac7-49e1-9d39-ed27e174ce06"
-    },
-    {
-      "id": "43f6",
-      "userId": "123",
-      "type": "address",
-      "fileUrl": "blob:http://localhost:5173/a9476dab-f80b-4e94-b01d-d1e9cbc01ac7"
-    }
-  ]
+  "documents": []
 }

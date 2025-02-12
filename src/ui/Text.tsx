@@ -15,9 +15,3 @@ export const TitleLogin = styled.h1`
   margin-left: 20px;
   font-family: "Inter", sans-serif;
 `;
-
-export const ErrorMessage = styled.p`
-  color: "red";
-  font-size: 14px;
-  text-align: center;
-`;
